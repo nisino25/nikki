@@ -412,7 +412,7 @@ export default {
       console.log('found it')
 
       this.dataList = JSON.parse(localStorage.dataList);  
-      this.showingDataList = JSON.parse(localStorage.showingDataList);
+      this.showingDataList = this.createShowingCal()
     }else{
       console.log('welcome and now creating') 
       let flag = false
@@ -420,8 +420,7 @@ export default {
       
       this.createCalendar();
       localStorage.dataList = JSON.stringify(this.dataList); 
-      localStorage.showingDataList = JSON.stringify(this.showingDataList); 
-
+      localStorage.showingDataList = this.createShowingCal()
     }
 
     // this.addRandomData(2021,7)
@@ -527,6 +526,7 @@ export default {
 
   },
   methods:{
+
     setCalendar(){
       this.showingYear = this.selectingYear
 
@@ -577,6 +577,31 @@ export default {
 
       // change the calendar page as well 
 
+    },
+
+    createShowingCal(){
+      let Mcount = 1; // Mcount max should be 12 then reset
+      let Ycount = 1998; // Mcount max should be 100 then end the whole loop
+
+      // let dataList = {}
+      let showingDataList = {}
+
+
+      while(Ycount < 2100){
+        showingDataList[Ycount] = {}
+        Mcount = 1
+        while(Mcount < 13){
+          // let fakeList =(dataList[Ycount][Mcount]).concat()
+
+          showingDataList[Ycount][Mcount] = this.makingFakeList(this.dataList[Ycount][Mcount],Ycount,Mcount)
+
+          Mcount++
+        }
+        Ycount++  
+        
+      }
+
+      return showingDataList
     },
 
     sendData(){
