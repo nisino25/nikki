@@ -4,7 +4,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body style="">
+<body style=" overflow: hidden;">
   <div class="wrapeer">
     <div class="menu-bar">
       <span class="menu-left-btn"><i class="material-icons">menu</i></span>
@@ -1074,7 +1074,7 @@ export default {
     },
 
     aftCord: function(){
-      if(this.preCord - this.aftCord >= 40){
+      if(this.aftCord - this.preCord>= 40 ){
         console.log('swiped: left')
         if(this.showingYear == 1998 && this.showingMonthlyCount == 1){
           return 
@@ -1090,7 +1090,7 @@ export default {
         }
       }
 
-      if(this.aftCord - this.preCord>= 40){
+      if(this.preCord - this.aftCord >= 40){
         console.log('swiped: right')
         if(this.showingYear == 2099 && this.showingMonthlyCount == 12){
           return 
