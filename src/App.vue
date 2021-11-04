@@ -145,7 +145,7 @@
         <div>
           <br>
           <div style="margin-top:-15px; margin-bottom:-10px">
-            <input type="num" v-model="showingYear" style="width: 10%;"> year
+            <input type="num" v-model="selectingYear" style="width: 10%;"> year
             &nbsp;
             <input type="num" v-model="showingMonthlyCount" style="width: 10%;"> month
             <button @click="setCalendar()">Update</button>
@@ -392,6 +392,8 @@ export default {
         mood: undefined,
       },
 
+      selectingYear: undefined,
+
       
 
 
@@ -436,6 +438,7 @@ export default {
     this.showingCal =this.showingDataList[year][month]
     // console.log(this.showingDataList[year][month])
     this.showingYear = year
+    this.selectingYear = year
 
     let monthlyList = ['','Jan','Feb','Mar','Apr','May','Jun','July','Aug','Sep','Oct','Nov','Dec',]
     this.showingMonth = monthlyList[month]
@@ -525,6 +528,7 @@ export default {
   },
   methods:{
     setCalendar(){
+      this.showingYear = this.selectingYear
 
       if(this.showingyear<1998 || this.showingYear > 2100 || this.showinMonth < 1||this.showingMonth > 12){
         alert('Type valid number please')
