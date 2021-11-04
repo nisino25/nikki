@@ -1018,7 +1018,7 @@ export default {
 
         case 3:
           this.moodText = 'sentiment_neutral'
-          this.moodColor = 'Seagreen'
+          this.moodColor = 'Seagreen '
           break;
 
         case 4:
