@@ -4,344 +4,348 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body style=" overflow: hidden;">
-  <div class="wrapeer">
-    <div class="menu-bar">
-      <span class="menu-left-btn"><i class="material-icons">menu</i></span>
-      <button @click="showingPage = 'calendar'" >Cal</button>
-      
-      <span class="menu-right-btn material-icons" @click="showingPage = 'input'">add_box</span>
-      <br><br>
-      <span class="menu-left-btn" style="color:white;  margin-bottom:5px; font-size:150%">日記</span>
-       
-    </div>
-  </div>
-  <br><br><br><br>
+<body >
 
-  <div class="selected-page">
+    <div class="wrapeer">
 
-    <div v-if="showingPage === 'main'">
-      <h3>Page: {{showingPage}}</h3>
-      
-      <button @click="showingPage = 'input'">Change the page</button>
-    </div>
-
-    <div v-if="showingPage === 'input'" >
-      <h2>HOW ARE YOU?</h2>
-
-      <div class="mood-btn" style="text-align: justify;
-  text-justify: inter-word;">
-        <i class="material-icons callendar" style="font-size:125%; margin-right:10px; ">insert_invitation</i><select id="pet-select" v-model="selectingNum" style="font-size:110%; margin-right:60px">
-          <option :value="6">{{DateList[6]}}</option>
-          <option :value="5">{{DateList[5]}}</option>
-          <option :value="4">{{DateList[4]}}</option>
-          <option :value="3">{{DateList[3]}}</option>
-          <option :value="2">{{DateList[2]}}</option>
-          <option :value="1">{{DateList[1]}}</option>
-          <option :value="0">{{DateList[0]}}</option>
-        </select>
-        <transition name="slide-fade">
-            <i class="material-icons mood-btn " v-if="showingTextarea" v-bind:style="{ color: moodColor}" style="margin-left:-40px; position:fixed; font-size:30px" @click="showingTextarea = false">{{moodText}}</i>
-        </transition>
-      </div>
-
-      <!-- <span>{{DateList}}</span> -->
-
-      <br><br>
-      <transition name="slide-fade">
-        <div class="selecting-mood"  v-if="!showingTextarea">
-          <i class="material-icons mood-btn " style="color:DarkBlue;  font-size:36px" @click="moodNum=1">sentiment_very_dissatisfied</i>
-          <i class="material-icons mood-btn " style="color:CornflowerBlue;  font-size:36px" @click="moodNum=2">sentiment_dissatisfied</i>
-          <i class="material-icons mood-btn;" style="font-size:36px; color:Seagreen" @click="moodNum=3">sentiment_neutral</i>
-          <i class="material-icons mood-btn" style="color:Coral;  font-size:36px" @click="moodNum=4">sentiment_satisfied</i>
-          <i class="material-icons mood-btn " style="color:#ff1919;  font-size:36px" @click="moodNum=5">sentiment_very_satisfied</i>
-          <!-- rgb(255, 99, 71) -->
-        </div>
-      
-      </transition>
-      
-
-
-      <div  class="textarea">
-        <transition name="slide-fade">
-          <div style="" class="topBar" v-if="showingTextarea">
+      <div class="menu-bar">
+        <span class="menu-left-btn" @click="showingPage = 'calendar'"><i class="material-icons callendar" style="font-size:125%; margin-right:10px; ">insert_invitation</i></span>
         
-            <!-- <span style="float:left; ">Length: {{contentLength}}</span> -->
-            <button style="float:right;" class="button1 button" @click="sendData()">Send</button>
-            
-
-             <textarea name="" id="" cols="35" rows="20" v-model="actualContent" v-if="showingTextarea" style="margin-top:10px"></textarea>
-
-          </div>
-
-          <!-- <div>
-            
-          </div> -->
-         
-        </transition>
-      </div>
-
-      <!-- <button @click="showingPage = 'main'"></button> -->
-    </div>
-
-    <div v-if="showingPage === 'editing'" >
-      <h2>HOW ARE YOU?</h2>
-
-      <div class="mood-btn" style="text-align: justify;
-  text-justify: inter-word;">
-        <i class="material-icons callendar" style="font-size:125%; margin-right:10px; ">insert_invitation</i>
-        <strong>{{editing.year}}/{{editing.month}}/{{editing.date}} {{editing.yoobi}}</strong>
-        <transition name="slide-fade">
-            <i class="material-icons mood-btn " v-if="showingTextarea" v-bind:style="{ color: moodColor}" style="position:fixed; font-size:30px" @click="showingTextarea = false">{{moodText}}</i>
-        </transition>
-      </div>
-
-      <!-- <span>{{DateList}}</span> -->
-
-      <br><br>
-      <transition name="slide-fade">
-        <div class="selecting-mood"  v-if="!showingTextarea">
-          <i class="material-icons mood-btn " style="color:DarkBlue;  font-size:36px" @click="moodNum = 1; editing.mood=1; showingTextarea = true">sentiment_very_dissatisfied</i>
-          <i class="material-icons mood-btn " style="color:CornflowerBlue;  font-size:36px" @click="moodNum = 2;editing.mood=2; showingTextarea = true ">sentiment_dissatisfied</i>
-          <i class="material-icons mood-btn;" style="font-size:36px; color:Seagreen" @click="moodNum = 3;editing.mood=3; showingTextarea = true">sentiment_neutral</i>
-          <i class="material-icons mood-btn" style="color:Coral;  font-size:36px" @click="moodNum = 4;editing.mood=4; showingTextarea = true">sentiment_satisfied</i>
-          <i class="material-icons mood-btn " style="color:#ff1919;  font-size:36px" @click="moodNum = 5;editing.mood=5; showingTextarea = true">sentiment_very_satisfied</i>
-          <!-- rgb(255, 99, 71) -->
-        </div>
-      
-      </transition>
-      
-
-
-      <div  class="textarea">
-        <transition name="slide-fade">
-          <div style="" class="topBar" v-if="showingTextarea">
+        <span class="menu-right-btn material-icons" @click="showingPage = 'input'">create</span>
+        <br><br>
+        <span class="menu-left-btn" style="color:white;  margin-top:-10px; font-size:150%">日記</span>
         
-            <!-- <span style="float:left; ">Length: {{contentLength}}</span> -->
-            <button style="float:right;" class="button1 button" @click="updateData()">Update</button>
-            
-
-             <textarea name="" id="" cols="35" rows="20" v-model="editing.content" v-if="showingTextarea" style="margin-top:10px"></textarea>
-
-          </div>
-
-          <!-- <div>
-            
-          </div> -->
-         
-        </transition>
       </div>
 
-      <!-- <button @click="showingPage = 'main'"></button> -->
-    </div>
+      <div class="selected-page" style="margin-top:80px">
 
-    <div v-if="showingPage === 'calendar' " >
+        <div v-if="showingPage === 'input'" >
+          <h2>HOW ARE YOU?</h2>
 
-      <div v-if="!showingCal" >
-        <h2>Not having data yet</h2>
-      </div>
-
-      <div v-else>
-        <div>
-          <br>
-          <div style="margin-top:-15px; margin-bottom:-10px">
-            <input type="num" v-model="selectingYear" style="width: 10%;"> year
-            &nbsp;
-            <input type="num" v-model="showingMonthlyCount" style="width: 10%;"> month
-            <button @click="setCalendar()">Update</button>
-
+          <div class="mood-btn" style="text-align: justify;
+      text-justify: inter-word;">
+            <i class="material-icons callendar" style="font-size:125%; margin-right:10px; ">insert_invitation</i><select id="pet-select" v-model="selectingNum" style="font-size:110%; margin-right:60px">
+              <option :value="6">{{DateList[6]}}</option>
+              <option :value="5">{{DateList[5]}}</option>
+              <option :value="4">{{DateList[4]}}</option>
+              <option :value="3">{{DateList[3]}}</option>
+              <option :value="2">{{DateList[2]}}</option>
+              <option :value="1">{{DateList[1]}}</option>
+              <option :value="0">{{DateList[0]}}</option>
+            </select>
+            <transition name="slide-fade">
+                <i class="material-icons mood-btn " v-if="showingTextarea" v-bind:style="{ color: moodColor}" style="margin-left:-40px; position:fixed; font-size:30px" @click="showingTextarea = false">{{moodText}}</i>
+            </transition>
           </div>
+
+          <!-- <span>{{DateList}}</span> -->
+
+          <br><br>
+          <transition name="slide-fade">
+            <div class="selecting-mood"  v-if="!showingTextarea">
+              <i class="material-icons mood-btn " style="color:DarkBlue;  font-size:36px" @click="moodNum=1">sentiment_very_dissatisfied</i>
+              <i class="material-icons mood-btn " style="color:CornflowerBlue;  font-size:36px" @click="moodNum=2">sentiment_dissatisfied</i>
+              <i class="material-icons mood-btn;" style="font-size:36px; color:Seagreen" @click="moodNum=3">sentiment_neutral</i>
+              <i class="material-icons mood-btn" style="color:Coral;  font-size:36px" @click="moodNum=4">sentiment_satisfied</i>
+              <i class="material-icons mood-btn " style="color:#ff1919;  font-size:36px" @click="moodNum=5">sentiment_very_satisfied</i>
+              <!-- rgb(255, 99, 71) -->
+            </div>
           
- 
-          <div class="calendar-container">
-      
-            <header @touchstart="tStart($event)" @touchend="tEnd($event)" >
-      
-              <div class="month">{{showingMonth}}</div>
-              <div class="year" style="marginTop:10px">{{showingYear}}</div>
-      
-            </header>
-      
-            <table class="calendar">
-      
-              <thead>
-      
-                <tr>
-      
-                  <td>Mon</td>
-                  <td>Tue</td>
-                  <td>Wed</td>
-                  <td>Thu</td>
-                  <td>Fri</td>
-                  <td>Sat</td>
-                  <td>Sun</td>
-      
-                </tr>
-      
-              </thead>
-      
-              <tbody>
-      
-                <tr>
-                  <template v-for="(day, i) in showingCal" :key="i">
-                    <td v-if="i<7 && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
-                    class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+          </transition>
+          
 
-                    <td v-if="i<7 && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
-                    :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
-                  </template>
-                </tr>
 
-                <tr>
-                  <template v-for="(day, i) in showingCal" :key="i" >
+          <div  class="textarea">
+            <transition name="slide-fade">
+              <div style="" class="topBar" v-if="showingTextarea">
+            
+                <!-- <span style="float:left; ">Length: {{contentLength}}</span> -->
+                <button style="float:right;" class="button1 button" @click="sendData()">Send</button>
+                
 
-                    <td v-if="(i >6 &&i<14) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
-                    class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+                <textarea name="" id="" cols="35" rows="20" v-model="actualContent" v-if="showingTextarea" style="margin-top:10px"></textarea>
 
-                    <td v-if="(i >6 &&i<14) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
-                    :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
-                  </template>
-                </tr>
+              </div>
 
-                <tr>
-                  <template v-for="(day, i) in showingCal" :key="i" >
+              <!-- <div>
+                
+              </div> -->
+            
+            </transition>
+          </div>
 
-                    <td v-if="(i >13 &&i<21) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
-                    class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+          <!-- <button @click="showingPage = 'main'"></button> -->
+        </div>
 
-                    <td v-if="(i > 13&&i<21) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
-                    :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+        <div v-if="showingPage === 'editing'" >
+          <h2>HOW ARE YOU?</h2>
 
-                    
-                  </template>
-                </tr>
+          <div class="mood-btn" style="text-align: justify;
+      text-justify: inter-word;">
+            <i class="material-icons callendar" style="font-size:125%; margin-right:10px; ">insert_invitation</i>
+            <strong>{{editing.year}}/{{editing.month}}/{{editing.date}} {{editing.yoobi}}</strong>
+            <transition name="slide-fade">
+                <i class="material-icons mood-btn " v-if="showingTextarea" v-bind:style="{ color: moodColor}" style="position:fixed; font-size:30px" @click="showingTextarea = false">{{moodText}}</i>
+            </transition>
+          </div>
 
-                <tr>
-                  <template v-for="(day, i) in showingCal" :key="i" >
-                    <td v-if="(i >20 &&i<28) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
-                    class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+          <!-- <span>{{DateList}}</span> -->
 
-                    <td v-if="(i >20 &&i<28) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
-                    :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
-                  </template>
-                </tr>
+          <br><br>
+          <transition name="slide-fade">
+            <div class="selecting-mood"  v-if="!showingTextarea">
+              <i class="material-icons mood-btn " style="color:DarkBlue;  font-size:36px" @click="moodNum = 1; editing.mood=1; showingTextarea = true">sentiment_very_dissatisfied</i>
+              <i class="material-icons mood-btn " style="color:CornflowerBlue;  font-size:36px" @click="moodNum = 2;editing.mood=2; showingTextarea = true ">sentiment_dissatisfied</i>
+              <i class="material-icons mood-btn;" style="font-size:36px; color:Seagreen" @click="moodNum = 3;editing.mood=3; showingTextarea = true">sentiment_neutral</i>
+              <i class="material-icons mood-btn" style="color:Coral;  font-size:36px" @click="moodNum = 4;editing.mood=4; showingTextarea = true">sentiment_satisfied</i>
+              <i class="material-icons mood-btn " style="color:#ff1919;  font-size:36px" @click="moodNum = 5;editing.mood=5; showingTextarea = true">sentiment_very_satisfied</i>
+              <!-- rgb(255, 99, 71) -->
+            </div>
+          
+          </transition>
+          
 
-                <tr>
-                  <template v-for="(day, i) in showingCal" :key="i" >
-                    <td v-if="(i >27 &&i<35) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
-                    class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
 
-                    <td v-if="(i >27 &&i<35) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
-                    :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
-                  </template>
-                </tr>
+          <div  class="textarea">
+            <transition name="slide-fade">
+              <div style="" class="topBar" v-if="showingTextarea">
+            
+                <!-- <span style="float:left; ">Length: {{contentLength}}</span> -->
+                <button style="float:right;" class="button1 button" @click="updateData()">Update</button>
+                
 
-                <tr>
-                  <template v-for="(day, i) in showingCal" :key="i" >
-                    <td v-if="(i >34 &&i<42) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
-                    class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+                <textarea name="" id="" cols="35" rows="20" v-model="editing.content" v-if="showingTextarea" style="margin-top:10px"></textarea>
 
-                    <td v-if="(i >34 &&i<42) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
-                    :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
-                  </template>
-                </tr>
+              </div>
 
-                <tr>
-                  <template v-for="(day, i) in showingCal" :key="i" >
+              <!-- <div>
+                
+              </div> -->
+            
+            </transition>
+          </div>
 
-                    <td v-if="(i > 41&&i<49) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
-                    class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+          <!-- <button @click="showingPage = 'main'"></button> -->
+        </div>
 
-                    <td v-if="(i > 41&&i<49) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
-                    :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
-                  </template>
-                </tr>
-      
-              </tbody>
-      
-            </table>
-            <!-- <span>{{moodStyle[dataList[showingYear][showingMonthlyCount][3].mood]}}</span> -->
-      
-          </div> <!-- end calendar-container -->
+        <div v-if="showingPage === 'calendar' " >
+
+          <div v-if="!showingCal" >
+            <h2>Not having data yet</h2>
+          </div>
+
+          <div v-else>
+            <div>
+              <br>
+              <div style="margin-top:-15px; margin-bottom:-10px">
+                <input type="num" v-model="selectingYear" style="width: 10%;"> year
+                &nbsp;
+                <input type="num" v-model="showingMonthlyCount" style="width: 10%;"> month
+                <button @click="setCalendar()">Update</button>
+
+              </div>
+              
     
-  </div> <!-- end container -->
- 
-        <!-- <Calendar title-position="left" />
-        <DatePicker title-position="left" v-model="date"  /> -->
-
-        <!-- <div>
-          <h1>Calendar</h1>
+              <div class="calendar-container">
+                
           
-          <div class="month">      
-            <ul>
-              <li class="prev">&#10094;</li>
-              <li class="next">&#10095;</li>
-              <li>
-                {{showingCal.month}}<br>
-                <span style="font-size:18px">{{showingCal.year}}</span>
-              </li>
-            </ul>
+                <header @touchstart="tStart($event)" @touchend="tEnd($event)" >
+          
+                  <div class="month">{{showingMonth}}</div>
+                  <div class="year" style="marginTop:10px">{{showingYear}}</div>
+          
+                </header>
+          
+                <table class="calendar">
+          
+                  <thead>
+          
+                    <tr>
+          
+                      <td>Mon</td>
+                      <td>Tue</td>
+                      <td>Wed</td>
+                      <td>Thu</td>
+                      <td>Fri</td>
+                      <td>Sat</td>
+                      <td>Sun</td>
+          
+                    </tr>
+          
+                  </thead>
+          
+                  <tbody>
+          
+                    <tr>
+                      <template v-for="(day, i) in showingCal" :key="i">
+                        <td v-if="i<7 && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
+                        class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+
+                        <td v-if="i<7 && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
+                        :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+                      </template>
+                    </tr>
+
+                    <tr>
+                      <template v-for="(day, i) in showingCal" :key="i" >
+
+                        <td v-if="(i >6 &&i<14) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
+                        class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+
+                        <td v-if="(i >6 &&i<14) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
+                        :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+                      </template>
+                    </tr>
+
+                    <tr>
+                      <template v-for="(day, i) in showingCal" :key="i" >
+
+                        <td v-if="(i >13 &&i<21) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
+                        class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+
+                        <td v-if="(i > 13&&i<21) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
+                        :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+
+                        
+                      </template>
+                    </tr>
+
+                    <tr>
+                      <template v-for="(day, i) in showingCal" :key="i" >
+                        <td v-if="(i >20 &&i<28) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
+                        class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+
+                        <td v-if="(i >20 &&i<28) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
+                        :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+                      </template>
+                    </tr>
+
+                    <tr>
+                      <template v-for="(day, i) in showingCal" :key="i" >
+                        <td v-if="(i >27 &&i<35) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
+                        class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+
+                        <td v-if="(i >27 &&i<35) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
+                        :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+                      </template>
+                    </tr>
+
+                    <tr>
+                      <template v-for="(day, i) in showingCal" :key="i" >
+                        <td v-if="(i >34 &&i<42) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
+                        class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+
+                        <td v-if="(i >34 &&i<42) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
+                        :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+                      </template>
+                    </tr>
+
+                    <tr>
+                      <template v-for="(day, i) in showingCal" :key="i" >
+
+                        <td v-if="(i > 41&&i<49) && (!dataList[showingYear][showingMonthlyCount][day.date] || day.additional) " :class="[day.additional ? 'prev-month' : '' ]"
+                        class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+
+                        <td v-if="(i > 41&&i<49) && dataList[showingYear][showingMonthlyCount][day.date] && !day.additional" :class="[day.additional ? 'prev-month' : '' ]"
+                        :style="{backgroundColor: moodStyle[dataList[showingYear][showingMonthlyCount][day.date].mood], color: textColor[dataList[showingYear][showingMonthlyCount][day.date].mood]}" class="circle" @click="edit(showingYear,showingMonthlyCount,day.date,day.yoobi,day.additional)">{{day.date}}</td>
+                      </template>
+                    </tr>
+          
+                  </tbody>
+          
+                </table>
+                <!-- <span>{{moodStyle[dataList[showingYear][showingMonthlyCount][3].mood]}}</span> -->
+          
+              </div>
+
+              
+              
+               <!-- end calendar-container -->
+        
+            </div> <!-- end container -->
+    
+            <!-- <Calendar title-position="left" />
+            <DatePicker title-position="left" v-model="date"  /> -->
+
+            <!-- <div>
+              <h1>Calendar</h1>
+              
+              <div class="month">      
+                <ul>
+                  <li class="prev">&#10094;</li>
+                  <li class="next">&#10095;</li>
+                  <li>
+                    {{showingCal.month}}<br>
+                    <span style="font-size:18px">{{showingCal.year}}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <ul class="weekdays">
+                <li>Mo</li>
+                <li>Tu</li>
+                <li>We</li>
+                <li>Th</li>
+                <li>Fr</li>
+                <li>Sa</li>
+                <li>Su</li>
+              </ul>
+
+              <ul class="days">  
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li><span class="active">10</span></li>
+                <li>11</li>
+                <li>12</li>
+                <li>13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+                <li>19</li>
+                <li>20</li>
+                <li>21</li>
+                <li>22</li>
+                <li>23</li>
+                <li>24</li>
+                <li>25</li>
+                <li>26</li>
+                <li>27</li>
+                <li>28</li>
+                <li>29</li>
+                <li>30</li>
+                <li>31</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+              </ul>
+            </div>  -->
+
+            
+            
+
+            <!-- <div>
+              <h5>{{showingCal}}</h5>
+            </div> -->
+
           </div>
-
-          <ul class="weekdays">
-            <li>Mo</li>
-            <li>Tu</li>
-            <li>We</li>
-            <li>Th</li>
-            <li>Fr</li>
-            <li>Sa</li>
-            <li>Su</li>
-          </ul>
-
-          <ul class="days">  
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-            <li>9</li>
-            <li><span class="active">10</span></li>
-            <li>11</li>
-            <li>12</li>
-            <li>13</li>
-            <li>14</li>
-            <li>15</li>
-            <li>16</li>
-            <li>17</li>
-            <li>18</li>
-            <li>19</li>
-            <li>20</li>
-            <li>21</li>
-            <li>22</li>
-            <li>23</li>
-            <li>24</li>
-            <li>25</li>
-            <li>26</li>
-            <li>27</li>
-            <li>28</li>
-            <li>29</li>
-            <li>30</li>
-            <li>31</li>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-          </ul>
-        </div>  -->
-
-        
-        
-
-        <!-- <div>
-          <h5>{{showingCal}}</h5>
-        </div> -->
-
+        </div>
       </div>
+      
     </div>
-  </div>
+
+  
+
+  
 
    
   
@@ -1304,7 +1308,9 @@ font-size:480px;
 }
 
 .menu-bar{
-  background-color: rgb(26, 115, 232);;
+  /* background-color: rgb(26, 115, 232);; */
+  /* background-color: DarkSlateBlue; */
+  background-color: SteelBlue;
   position:fixed;
   padding:0;
   margin:0;
@@ -1315,7 +1321,7 @@ font-size:480px;
   /* padding-left: 10px; */
 
   width: 100%;
-  height: auto;
+  height: 75px;
   color:white;
 }
 
@@ -1427,6 +1433,28 @@ font-size:480px;
   color:SeaShell;
   text-align: center;
 }
+
+body{
+  overflow: hidden;
+}
   
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+.slide-fade-enter-active {
+  transition: all 0.5s ease-out;
+}
+.slide-fade-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+   opacity: 0;
+}
 
 </style>
