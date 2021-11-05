@@ -1089,6 +1089,7 @@ export default {
           this.setCalendar()
         }else{
           this.showingYear--
+          this.selectingYear--
           this.showingMonthlyCount = 12
           this.setCalendar()
         }
@@ -1105,6 +1106,7 @@ export default {
           this.setCalendar()
         }else{
           this.showingYear++
+          this.selectingYear++
           this.showingMonthlyCount = 1
           this.setCalendar()
         }
