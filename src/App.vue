@@ -1078,7 +1078,7 @@ export default {
     },
 
     aftCord: function(){
-      if(this.aftCord - this.preCord>= 40 ){
+      if(this.aftCord - this.preCord>= 60 ){
         console.log('swiped: left')
         if(this.showingYear == 1998 && this.showingMonthlyCount == 1){
           return 
@@ -1095,7 +1095,7 @@ export default {
         }
       }
 
-      if(this.preCord - this.aftCord >= 40){
+      if(this.preCord - this.aftCord >= 60){
         console.log('swiped: right')
         if(this.showingYear == 2099 && this.showingMonthlyCount == 12){
           return 
