@@ -63,7 +63,7 @@
                 <button style="float:right;" class="button1 button" @click="sendData()">Send</button>
                 
 
-                <textarea name="" id="" cols="35" rows="20" v-model="actualContent" v-if="showingTextarea" style="margin-top:10px; font-size: 20px;"></textarea>
+                <textarea name="" id="" cols="35" rows="20" v-model="actualContent" v-if="showingTextarea" style="margin-top:10px; font-size: 20px; width: 95%"></textarea>
 
               </div>
 
