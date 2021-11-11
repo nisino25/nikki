@@ -108,10 +108,11 @@
 
           <div  class="textarea">
             <transition name="slide-fade">
-              <div style="" class="topBar" v-if="showingTextarea">
+              <div style="w" class="topBar" v-if="showingTextarea">
             
                 <!-- <span style="float:left; ">Length: {{contentLength}}</span> -->
                 <button style="float:right;" class="button1 button" @click="updateData()">Update</button>
+                <br>
                 
 
                 <textarea name="" id="" cols="35" rows="20" v-model="editing.content" v-if="showingTextarea" style="margin-top:10px"></textarea>
@@ -977,6 +978,10 @@ export default {
       this.editing.date = date
       this.editing.yoobi = yoobi
       this.editing.mood = this.dataList[year][month][date].mood
+
+      if(this.editing.mood == 0){
+        this.showingTextarea = false
+      }
 
       this.showingPage = 'editing'
       console.log(this.dataList[year][month][date].mood)
